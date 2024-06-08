@@ -22,8 +22,8 @@ This project is a web scraper built with Python and Flask that allows users to e
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/your-username/web-scraper-with-table-extraction.git
-    cd web-scraper-with-table-extraction
+    git clone https://github.com/Rishurajgautam24/Web-Scrapper.git
+    cd web-scraper
     ```
 
 2. Create and activate a virtual environment:
