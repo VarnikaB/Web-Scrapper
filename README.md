@@ -53,7 +53,7 @@ This project is a web scraper built with Python and Flask that allows users to e
 5. Click "Extract" to download the table data as a CSV file.
 
 ## Project Structure
-
+```python
 web-scraper/
 │
 ├── templates/
@@ -63,7 +63,7 @@ web-scraper/
 ├── app.py # Main Flask application
 ├── requirements.txt # List of required packages
 └── README.md # Project description and instructions
-
+```
 
 ## Contributing
 
