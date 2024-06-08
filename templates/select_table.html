@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Select Table</title>
+</head>
+<body>
+    <h1>Select Table to Extract</h1>
+    <form method="POST" action="/extract">
+        <input type="hidden" name="url" value="{{ url }}">
+        {% for index, table in enumerate(tables) %}
+            <hr>
+            <hr>
+            <div>
+                <input type="radio" id="table{{ index }}" name="table_index" value="{{ index }}" required>
+                <label for="table{{ index }}">Table {{ index + 1 }}</label>
+            </div>
+            <hr>
+            <hr>
+            <div>{{ table | safe }}</div>
+        {% endfor %}
+        <button type="submit">Extract</button>
+    </form>
+</body>
+</html>
