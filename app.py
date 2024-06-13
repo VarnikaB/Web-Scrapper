@@ -21,7 +21,7 @@ def index():
 def extract():
     url = request.form['url']
     table_index = int(request.form['table_index'])
-    
+    filetype = request.form['filetype']
     response = requests.get(url)
     soup = BeautifulSoup(response.content, 'html.parser')
     tables = soup.find_all('table')
@@ -60,14 +60,19 @@ def extract():
     # Extract headers and data from the grid
     headers = grid[0]
     data = grid[1:]
-
     # Convert to DataFrame and save as CSV
     df = pd.DataFrame(data, columns=headers if headers else None)
     output = BytesIO()
-    df.to_csv(output, index=False)
-    output.seek(0)
-    
-    return send_file(output, mimetype='text/csv', as_attachment=True, download_name='extracted_data.csv')
+    if filetype == 'CSV':
+        df.to_csv(output, index=False)
+        output.seek(0)
+        return send_file(output, mimetype='text/csv', as_attachment=True, download_name='extracted_data.csv')
+    elif filetype == 'JSON':
+        try:
+            df.to_json(output, orient='records')
+        except:
+            return 'Error: Could not convert the table to JSON format. Please try again with a different table or filetype'
+        return send_file(output, mimetype='text/csv', as_attachment=True, download_name='extracted_data.json')
 
 if __name__ == '__main__':
     app.run(debug=True)
